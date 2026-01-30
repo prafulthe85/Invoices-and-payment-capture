@@ -1,6 +1,7 @@
 # Invoice & Payment Capture System
 
 A simple B2B invoice management system built with React.js, Node.js (Express), and Supabase (PostgreSQL).
+The URL for supabase is being shared on the email, Please check them and created the .env file in both frontend and backend folder and paste the content from email
 
 ## Features
 
