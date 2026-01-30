@@ -10,8 +10,10 @@ The URL for supabase is being shared on the email, Please check them and created
 - ✅ Issue draft invoices
 - ✅ Record full or partial payments
 - ✅ Void invoices (before payment)
-- ✅ Manage customers
 - ✅ View payment history
+- ✅ Idempotency for duplicate payment prevention
+- ✅ Concurrency control with optimistic locking
+- ✅ Mobile responsive design
 
 ## Tech Stack
 
@@ -26,7 +28,6 @@ The URL for supabase is being shared on the email, Please check them and created
 │   ├── src/
 │   │   ├── db/
 │   │   │   ├── supabase.js      # Supabase client
-│   │   │   ├── seed.js          # Seed data script
 │   │   │   └── migrations/      # SQL schema
 │   │   ├── routes/              # API routes
 │   │   ├── services/            # Business logic
@@ -36,7 +37,7 @@ The URL for supabase is being shared on the email, Please check them and created
 │   ├── src/
 │   │   ├── pages/               # Page components
 │   │   ├── api.js               # API calls
-│   │   ├── App.js               # Main app
+│   │   ├── App.jsx              # Main app
 │   │   └── App.scss             # Styles
 │   └── package.json
 ├── docs/
@@ -85,16 +86,7 @@ REACT_APP_API_URL=http://localhost:3001/api
 2. Copy contents of `backend/src/db/migrations/001_schema.sql`
 3. Run the SQL query
 
-### Step 4: Seed Database (Optional)
-
-```bash
-cd backend
-npm run seed
-```
-
-This creates sample customers, invoices, and payments.
-
-### Step 5: Run the Application
+### Step 4: Run the Application
 
 **Terminal 1 - Backend:**
 

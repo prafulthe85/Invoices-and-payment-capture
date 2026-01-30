@@ -19,6 +19,11 @@ body {
   background: #1a1a2e;
   color: white;
   padding: 20px;
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 100;
 
   h2 {
     margin-bottom: 30px;
@@ -50,12 +55,13 @@ body {
 .content {
   flex: 1;
   padding: 30px;
+  margin-left: 200px;
 }
 
-// Common styles
 .page-title {
   margin-bottom: 20px;
   color: #333;
+  font-size: 24px;
 }
 
 .card {
@@ -73,6 +79,7 @@ body {
   cursor: pointer;
   font-size: 14px;
   margin-right: 10px;
+  margin-bottom: 5px;
 
   &-primary {
     background: #4f46e5;
@@ -124,14 +131,21 @@ body {
   }
 }
 
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 600px;
 
   th, td {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #e5e7eb;
+    white-space: nowrap;
   }
 
   th {
@@ -150,6 +164,7 @@ table {
   border-radius: 20px;
   font-size: 12px;
   font-weight: 500;
+  display: inline-block;
 
   &-draft { background: #e5e7eb; color: #374151; }
   &-issued { background: #dbeafe; color: #1d4ed8; }
@@ -170,6 +185,7 @@ table {
   padding: 15px;
   border-radius: 5px;
   margin-bottom: 20px;
+  word-break: break-word;
 }
 
 .stats-grid {
@@ -208,14 +224,18 @@ table {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px;
+  z-index: 200;
 }
 
 .modal {
   background: white;
   padding: 30px;
   border-radius: 10px;
-  width: 400px;
-  max-width: 90%;
+  width: 100%;
+  max-width: 450px;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .modal-title {
@@ -228,9 +248,233 @@ table {
   justify-content: flex-end;
   gap: 10px;
   margin-top: 20px;
+  flex-wrap: wrap;
 }
 
-// Helper
 .text-right { text-align: right; }
 .mt-20 { margin-top: 20px; }
 .mb-20 { margin-bottom: 20px; }
+
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: auto;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    h2 {
+      display: none;
+    }
+
+    ul {
+      display: flex;
+      width: 100%;
+      justify-content: space-around;
+    }
+
+    li {
+      margin: 0;
+    }
+
+    a {
+      padding: 8px 12px;
+      font-size: 12px;
+      text-align: center;
+    }
+  }
+
+  .content {
+    margin-left: 0;
+    margin-bottom: 70px;
+    padding: 20px 15px;
+  }
+
+  .page-title {
+    font-size: 20px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .stat-card {
+    padding: 15px;
+
+    .value {
+      font-size: 22px;
+    }
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  .invoice-grid,
+  [style*="grid-template-columns: 2fr 1fr"],
+  [style*="grid-template-columns: 1fr 1fr"] {
+    display: block !important;
+
+    > div {
+      margin-bottom: 15px;
+    }
+  }
+
+  [style*="grid-template-columns: 1fr 1fr 1fr"] {
+    display: block !important;
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+  }
+
+  [style*="grid-template-columns: 3fr 1fr 1fr auto"] {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e5e7eb;
+
+    input {
+      flex: 1;
+      min-width: 100px;
+    }
+
+    input[placeholder="Description"] {
+      flex: 100%;
+    }
+
+    button {
+      margin: 0;
+    }
+  }
+
+  [style*="justify-content: space-between"] {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 15px;
+
+    > div {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  }
+
+  .btn {
+    flex: 1;
+    text-align: center;
+    min-width: 100px;
+  }
+
+  .modal {
+    padding: 20px;
+    margin: 10px;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+
+    .btn {
+      width: 100%;
+      margin: 5px 0;
+    }
+  }
+
+  [style*="display: flex"][style*="gap: 20px"] {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 15px 10px;
+  }
+
+  .page-title {
+    font-size: 18px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .stat-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+
+    h3 {
+      margin-bottom: 0;
+    }
+
+    .value {
+      font-size: 20px;
+    }
+  }
+
+  .sidebar a {
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+
+  table {
+    font-size: 13px;
+
+    th, td {
+      padding: 8px 6px;
+    }
+  }
+
+  .status {
+    padding: 3px 8px;
+    font-size: 10px;
+  }
+
+  input, select, textarea {
+    padding: 12px !important;
+    font-size: 16px !important;
+  }
+
+  .btn {
+    display: block;
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .content > div:first-child > .btn {
+    width: auto;
+    display: inline-block;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .sidebar {
+    padding: 5px 10px;
+
+    ul {
+      gap: 5px;
+    }
+  }
+
+  .content {
+    margin-bottom: 50px;
+  }
+}
