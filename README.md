@@ -28,7 +28,7 @@ The URL for supabase is being shared on the email, Please check them and created
 │   ├── src/
 │   │   ├── db/
 │   │   │   ├── supabase.js      # Supabase client
-│   │   │   └── migrations/      # SQL schema
+│   │   │   └── migrations/
 │   │   ├── routes/              # API routes
 │   │   ├── services/            # Business logic
 │   │   └── index.js             # Entry point
@@ -67,11 +67,15 @@ npm install
 ### Step 2: Configure Environment
 
 **Backend** - Create `backend/.env`:
+NOTE: Shared the creds over the email please copy and paste in the env file in both fronted and backend
 
 ```
-PORT=3001
-SUPABASE_URL=your_supabase_url
-SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+NODE_ENV=development
+PORT=3001 (Please check that port is free, if not update here and at frontend env file also )
+SUPABASE_URL= url_from_email
+SUPABASE_ANON_KEY= key_from_email
+SUPABASE_SERVICE_ROLE_KEY=key_from_email
+FRONTEND_URL=http://localhost:3000
 ```
 
 **Frontend** - Create `frontend/.env`:
@@ -80,13 +84,7 @@ SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 REACT_APP_API_URL=http://localhost:3001/api
 ```
 
-### Step 3: Setup Database
-
-1. Go to your Supabase project → SQL Editor
-2. Copy contents of `backend/src/db/migrations/001_schema.sql`
-3. Run the SQL query
-
-### Step 4: Run the Application
+### Step 3: Run the Application
 
 **Terminal 1 - Backend:**
 
@@ -144,3 +142,10 @@ App opens at http://localhost:3000
 - Bank Transfer
 - Cheque
 - Card
+
+## ScreenShots of Project
+
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
